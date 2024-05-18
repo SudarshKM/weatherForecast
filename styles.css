@@ -1,0 +1,9 @@
+*{
+    overflow: hidden;
+}
+
+.darkmode{
+    background-color: darkslategrey;
+
+    color: whitesmoke;
+}
