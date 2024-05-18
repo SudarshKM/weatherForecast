@@ -7,3 +7,19 @@
 
     color: whitesmoke;
 }
+
+
+ /* @media (max-width: 768px) {
+  
+  .body{
+    background: rgb(174,238,178);
+    background: radial-gradient(circle, rgba(174,238,178,1) 0%, rgba(66,78,106,1) 100%);
+  }
+
+  .block1{
+  background-color: white;
+    border-radius:0 0 40px 40px;
+  } 
+ } */
+
+  
