@@ -1,6 +1,71 @@
+//Default
 
 
 
+const onDefault =async () =>{
+
+    const responseDefault = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=KAKKANAD&appid=315a06d7317352ab9cc6a1baf6ce2ac2`);
+    responseDefault.json().then(data=>{
+
+     var cityName = "KAKKANAD"
+    var temp = Math.floor(data.main.temp - 273.15 )
+    temperature.textContent = `${temp}° C `;
+    
+    
+
+    var humidity = data.main.humidity;
+    humidityHtml.textContent=`Humidity : ${humidity}%`
+
+    var description = data.weather[0].description;
+
+    descriptionHtml.textContent=`${description}`;
+
+    var icon = data.weather[0].icon;
+
+    iconHtml.setAttribute("src",`https://openweathermap.org/img/wn/${icon}@2x.png`)
+    
+
+    // var timeZoneId= data.timeZone;
+    
+    let date = new Date();  
+    // dateHtml.innerHTML=`${date}`
+
+
+
+
+    var requestOptions = {
+        method: 'GET',
+      };
+      
+      fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${cityName}&apiKey=5087864d0b63472a8e5dd24d2839d6f4`, requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            geoData = result.features[0].properties;
+
+            var countryName = geoData.country.toUpperCase();
+            var stateName =geoData.state;
+           cityCountry.innerHTML=`${cityName}  |  ${countryName}`;
+            
+           //timeDate
+
+           var timeZoneId = geoData.timezone.name;
+          
+
+        //    console.log(geoData.timeZone.offset_DST_seconds,"offset");
+           let timeData = new Date(new Date().toLocaleString("en-US", {timeZone: `${timeZoneId}`}) );
+
+           dateHtml.textContent=`${timeData}`
+
+           console.log(timeData);
+
+           console.log(geoData.timezone.offset_STD);
+        })
+        .catch(error => console.log('error', error));
+
+
+})
+
+}
 
 getWeather = async () =>{
     // console.log(city.value);
