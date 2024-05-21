@@ -21,6 +21,13 @@ getWeather = async () =>{
 
         response.json().then((data)=>{
 
+            if (typeof(data.main) === "undefined") {
+                alert("Enter a valid input");
+
+
+            }
+            else {
+
             var temp = Math.floor(data.main.temp - 273.15 )
             temperature.textContent = `${temp}° C `;
             
@@ -62,14 +69,21 @@ getWeather = async () =>{
                    //timeDate
 
                    var timeZoneId = geoData.timezone.name;
-                   let timeData = new Date(new Date().toLocaleString("en-US", {timeZone: `${timeZoneId}`}));
+                  
+
+                //    console.log(geoData.timeZone.offset_DST_seconds,"offset");
+                   let timeData = new Date(new Date().toLocaleString("en-US", {timeZone: `${timeZoneId}`}) );
 
                    dateHtml.textContent=`${timeData}`
 
                    console.log(timeData);
+
+                   console.log(geoData.timezone.offset_STD);
                 })
                 .catch(error => console.log('error', error));
         
+
+            }
         })
 
     }
