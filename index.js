@@ -67,6 +67,9 @@ const onDefault =async () =>{
 
 }
 
+
+//onRequest
+
 getWeather = async () =>{
     // console.log(city.value);
 
@@ -138,8 +141,27 @@ getWeather = async () =>{
 
                 //    console.log(geoData.timeZone.offset_DST_seconds,"offset");
                    let timeData = new Date(new Date().toLocaleString("en-US", {timeZone: `${timeZoneId}`}) );
+                   var offset = geoData.timezone.offset_STD;
 
-                   dateHtml.textContent=`${timeData}`
+                //    function time () {
+                //     var day = timeData.getDay();
+                //     var month = timeData.getMonth();
+
+                //     var s = timeData.getSeconds();
+                //     var m = timeData.getMinutes();
+                //     var h = timeData.getHours();
+
+                //     dateHtml.textContent = `${day} , ${month},${s} , ${m} ,${h} ,${offset}`
+
+                //    }
+
+                //    setInterval(time , 1000)
+                
+                    // setInterval(()=>{
+                        dateHtml.textContent=`${date}`
+
+                    // },1000)
+
 
                    console.log(timeData);
 
@@ -168,5 +190,6 @@ document.addEventListener("keypress" ,(event)=>{
 
     if (event.key==="Enter") {
         getWeather();
+        // console.log(city.value);
     }
 })
